@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Apply enhancements to the photo
-        ctx.filter = 'sepia(1) saturate(5) hue-rotate(-10deg)'; // Red tint
+        ctx.filter = 'sepia(1) saturate(5) hue-rotate(-50deg)'; // Red tint
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Create a download link for the captured photo
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply filter to live video feed
     function applyFilter() {
-        video.style.filter = 'sepia(1) saturate(5) hue-rotate(-10deg)';
+        video.style.filter = 'sepia(1) saturate(5) hue-rotate(-50deg)';
     }
 
     // Call applyFilter function on video play
