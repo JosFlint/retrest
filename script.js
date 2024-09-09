@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         offScreenCtx.drawImage(video, 0, 0, offScreenCanvas.width, offScreenCanvas.height);
 
         // Apply brightness and contrast to the canvas
-        offScreenCtx.filter = 'sepia(1) saturate(40) hue-rotate(-35deg) brightness(0,9) contrast(0.9)'; // Adjusted filter values
+        offScreenCtx.filter = 'sepia(1) saturate(2.5) hue-rotate(-90deg) brightness(0,9) contrast(1.7)'; // Adjusted filter values
         offScreenCtx.drawImage(offScreenCanvas, 0, 0, offScreenCanvas.width, offScreenCanvas.height);
 
         // Add text watermark to the canvas
