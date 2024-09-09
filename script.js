@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Apply the red-tinted filter
-        ctx.filter = 'sepia(0) saturate(30) hue-rotate(-120deg)';
+        ctx.filter = 'sepia(1) saturate(30) hue-rotate(-50deg)';
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Display the canvas (optional)
