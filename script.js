@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Apply enhancements to the photo
-        ctx.filter = 'sepia(1) saturate(3) hue-rotate(-120deg)'; // Red tint
+        ctx.filter = 'sepia(1) saturate(5) hue-rotate(-10deg)'; // Red tint
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Create a download link for the captured photo
