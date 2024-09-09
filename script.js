@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const captureButton = document.getElementById('capture');
     const ctx = canvas.getContext('2d');
 
-    // Access the user's rear camera
+    // Access the user's rear camera with higher quality settings
     navigator.mediaDevices.getUserMedia({
         video: {
             facingMode: { ideal: 'environment' }, // Use rear camera
-            width: { ideal: 1920 },
-            height: { ideal: 1080 },
-            frameRate: { ideal: 30 }
+            width: { ideal: 3840 }, // Increase width for higher resolution
+            height: { ideal: 2160 }, // Increase height for higher resolution
+            frameRate: { ideal: 60 } // Higher frame rate for smoother video
         }
     })
     .then(stream => {
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.height = video.videoHeight;
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
-        // Apply the red-tinted filter
-        ctx.filter = 'sepia(0) saturate(30) hue-rotate(-120deg)';
+        // Apply enhancements to the photo
+        ctx.filter = 'sepia(0) saturate(30) hue-rotate(-120deg) brightness(1.2) contrast(1.2)';
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Create a download link for the captured photo
