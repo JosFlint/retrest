@@ -9,20 +9,27 @@
             display: block;
             width: 100%;
             height: auto;
-            filter: sepia(1) saturate(30) hue-rotate(-20deg) brightness(1.5)'; // Adjusted filter values; /* Apply red tint to live feed */
-        }
-        #canvas {
-            display: none; /* Hide canvas initially */
+            filter: sepia(1) saturate(30) hue-rotate(-20deg) brightness(1.5); /* Apply red tint with increased brightness */
         }
         #capture {
             margin: 10px 0;
+        }
+        #info-link {
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        #info-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <video id="video" autoplay></video>
-    <canvas id="canvas"></canvas>
     <button id="capture">Capture Photo</button>
+    <a href="https://josflint.com" id="info-link" target="_blank">Visit Jos Flint's Website</a>
     <script src="script.js"></script>
 </body>
 </html>
