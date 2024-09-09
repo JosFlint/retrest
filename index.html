@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red-Tinted Camera Filter</title>
     <style>
-        #video, #canvas {
+        #video {
             display: block;
             width: 100%;
             height: auto;
+            filter: sepia(1) saturate(30) hue-rotate(-50deg);
         }
         #canvas {
-            display: none; /* Hide the canvas element initially */
+            display: none; /* Hide canvas initially */
         }
         #capture {
             margin: 10px 0;
@@ -25,3 +26,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
