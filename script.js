@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const captureButton = document.getElementById('capture');
     const ctx = canvas.getContext('2d');
 
-    // Access the user's camera with higher quality settings
+    // Access the user's rear camera
     navigator.mediaDevices.getUserMedia({
         video: {
-            facingMode: "user",
+            facingMode: { ideal: 'environment' }, // Use rear camera
             width: { ideal: 1920 },
             height: { ideal: 1080 },
             frameRate: { ideal: 30 }
@@ -28,19 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Apply the red-tinted filter
-        ctx.filter = 'sepia(1) saturate(30) hue-rotate(-50deg)';
+        ctx.filter = 'sepia(0) saturate(30) hue-rotate(-120deg)';
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
-        // Display the canvas (optional)
-        canvas.style.display = 'block';
-        
-        // Save the image
+        // Create a download link for the captured photo
         const dataURL = canvas.toDataURL('image/png');
-        console.log('Captured image data URL:', dataURL);
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'captured-photo.png'; // Name of the file
+        link.click(); // Trigger the download
         
-        // Optional: Display captured image
-        const img = document.createElement('img');
-        img.src = dataURL;
-        document.body.appendChild(img);
+        // Optional: Display the canvas
+        canvas.style.display = 'block';
     });
+
+    // Apply filter to live video feed
+    function applyFilter() {
+        video.style.filter = 'sepia(0) saturate(30) hue-rotate(-120deg)';
+    }
+
+    // Call applyFilter function on video play
+    video.addEventListener('play', applyFilter);
 });
