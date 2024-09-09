@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
     const captureButton = document.getElementById('capture');
-    const ctx = canvas.getContext('2d');
-
+    
     // Access the user's camera with 1080p resolution
     navigator.mediaDevices.getUserMedia({
         video: {
@@ -20,30 +18,33 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error accessing the camera: ', err);
     });
 
-    // Capture the photo with the red-tinted filter
+    // Capture the photo with the red-tinted filter and increased brightness
     captureButton.addEventListener('click', () => {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // Create an off-screen canvas to process the video frame
+        const offScreenCanvas = document.createElement('canvas');
+        const offScreenCtx = offScreenCanvas.getContext('2d');
         
-        // Apply enhancements to the photo
-        ctx.filter = 'sepia(1) saturate(40) hue-rotate(-25deg)'; // Red tint
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        offScreenCanvas.width = video.videoWidth;
+        offScreenCanvas.height = video.videoHeight;
+        offScreenCtx.drawImage(video, 0, 0, offScreenCanvas.width, offScreenCanvas.height);
+        
+        // Apply enhancements to the photo with increased brightness
+        offScreenCtx.filter = 'sepia(1) saturate(20) hue-rotate(-20deg) brightness(1.5)'; // Adjusted filter values
+        offScreenCtx.drawImage(offScreenCanvas, 0, 0, offScreenCanvas.width, offScreenCanvas.height);
+        
+        // Convert canvas content to data URL
+        const dataURL = offScreenCanvas.toDataURL('image/png');
         
         // Create a download link for the captured photo
-        const dataURL = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.href = dataURL;
         link.download = 'captured-photo.png'; // Name of the file
         link.click(); // Trigger the download
-        
-        // Optional: Display the canvas
-        canvas.style.display = 'block';
     });
 
     // Apply filter to live video feed
     function applyFilter() {
-        video.style.filter = 'sepia(1) saturate(40) hue-rotate(-25deg) brightness(1.5)'; // Adjusted filter values';
+        video.style.filter = 'sepia(1) saturate(20) hue-rotate(-20deg) brightness(1.5)'; // Adjusted filter values
     }
 
     // Call applyFilter function on video play
