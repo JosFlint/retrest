@@ -1,0 +1,5 @@
+#canvas {
+    filter: sepia(1) saturate(5) hue-rotate(-50deg);
+    width: 100%;
+    height: auto;
+}
