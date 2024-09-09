@@ -4,13 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const captureButton = document.getElementById('capture');
     const ctx = canvas.getContext('2d');
 
-    // Access the user's rear camera with higher quality settings
+    // Access the user's camera with 1080p resolution
     navigator.mediaDevices.getUserMedia({
         video: {
             facingMode: { ideal: 'environment' }, // Use rear camera
-            width: { ideal: 3840 }, // Increase width for higher resolution
-            height: { ideal: 2160 }, // Increase height for higher resolution
-            frameRate: { ideal: 60 } // Higher frame rate for smoother video
+            width: { ideal: 1920 }, // 1080p width
+            height: { ideal: 1080 } // 1080p height
         }
     })
     .then(stream => {
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Apply enhancements to the photo
-        ctx.filter = 'sepia(0) saturate(30) hue-rotate(-120deg) brightness(1.2) contrast(1.2)';
+        ctx.filter = 'sepia(1) saturate(3) hue-rotate(-120deg)'; // Red tint
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         
         // Create a download link for the captured photo
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply filter to live video feed
     function applyFilter() {
-        video.style.filter = 'sepia(0) saturate(30) hue-rotate(-120deg)';
+        video.style.filter = 'sepia(1) saturate(3) hue-rotate(-120deg)';
     }
 
     // Call applyFilter function on video play
