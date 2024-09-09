@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply filter to live video feed
     function applyFilter() {
-        video.style.filter = 'sepia(1) saturate(3) hue-rotate(-120deg)';
+        video.style.filter = 'sepia(1) saturate(5) hue-rotate(-10deg)';
     }
 
     // Call applyFilter function on video play
